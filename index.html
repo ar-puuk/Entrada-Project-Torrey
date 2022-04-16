@@ -33,12 +33,12 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet.markercluster.js"></script>
-        <script src="data/Torrey_Town_1.js"></script>
-        <script src="data/Torrey_Field_Records_2.js"></script>
+        <script src="data/Torrey_Town_2.js"></script>
+        <script src="data/Torrey_Field_Records_3.js"></script>
         <script>
         var map = L.map('map', {
-            zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[38.21424680043789,-111.51627760985187],[38.33952292343244,-111.25814686477123]]);
+            zoomControl:true, maxZoom:28, minZoom:6
+        }).fitBounds([[38.218934035615284,-111.48111961584215],[38.32302978349703,-111.29137218183078]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -46,20 +46,33 @@
         function setBounds() {
             map.setMaxBounds(map.getBounds());
         }
-        map.createPane('pane_EsriImagery_0');
-        map.getPane('pane_EsriImagery_0').style.zIndex = 400;
-        var layer_EsriImagery_0 = L.tileLayer('http://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            pane: 'pane_EsriImagery_0',
-            opacity: 0.75,
+        map.createPane('pane_GoogleMaps_0');
+        map.getPane('pane_GoogleMaps_0').style.zIndex = 400;
+        var layer_GoogleMaps_0 = L.tileLayer('http://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleMaps_0',
+            opacity: 1.0,
             attribution: '',
-            minZoom: 1,
+            minZoom: 6,
             maxZoom: 28,
             minNativeZoom: 0,
             maxNativeZoom: 22
         });
-        layer_EsriImagery_0;
-        map.addLayer(layer_EsriImagery_0);
-        function pop_Torrey_Town_1(feature, layer) {
+        layer_GoogleMaps_0;
+        map.addLayer(layer_GoogleMaps_0);
+        map.createPane('pane_GoogleSatellite_1');
+        map.getPane('pane_GoogleSatellite_1').style.zIndex = 401;
+        var layer_GoogleSatellite_1 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleSatellite_1',
+            opacity: 0.66,
+            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
+            minZoom: 6,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_GoogleSatellite_1;
+        map.addLayer(layer_GoogleSatellite_1);
+        function pop_Torrey_Town_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
@@ -119,12 +132,12 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Torrey_Town_1_0() {
+        function style_Torrey_Town_2_0() {
             return {
-                pane: 'pane_Torrey_Town_1',
+                pane: 'pane_Torrey_Town_2',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
-                dashArray: '1,5',
+                dashArray: '10,5',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 3.0, 
@@ -134,21 +147,21 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_Torrey_Town_1');
-        map.getPane('pane_Torrey_Town_1').style.zIndex = 401;
-        map.getPane('pane_Torrey_Town_1').style['mix-blend-mode'] = 'normal';
-        var layer_Torrey_Town_1 = new L.geoJson(json_Torrey_Town_1, {
+        map.createPane('pane_Torrey_Town_2');
+        map.getPane('pane_Torrey_Town_2').style.zIndex = 402;
+        map.getPane('pane_Torrey_Town_2').style['mix-blend-mode'] = 'normal';
+        var layer_Torrey_Town_2 = new L.geoJson(json_Torrey_Town_2, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_Torrey_Town_1',
-            layerName: 'layer_Torrey_Town_1',
-            pane: 'pane_Torrey_Town_1',
-            onEachFeature: pop_Torrey_Town_1,
-            style: style_Torrey_Town_1_0,
+            dataVar: 'json_Torrey_Town_2',
+            layerName: 'layer_Torrey_Town_2',
+            pane: 'pane_Torrey_Town_2',
+            onEachFeature: pop_Torrey_Town_2,
+            style: style_Torrey_Town_2_0,
         });
-        bounds_group.addLayer(layer_Torrey_Town_1);
-        map.addLayer(layer_Torrey_Town_1);
-        function pop_Torrey_Field_Records_2(feature, layer) {
+        bounds_group.addLayer(layer_Torrey_Town_2);
+        map.addLayer(layer_Torrey_Town_2);
+        function pop_Torrey_Field_Records_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Station</th>\
@@ -202,9 +215,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Torrey_Field_Records_2_0() {
+        function style_Torrey_Field_Records_3_0() {
             return {
-                pane: 'pane_Torrey_Field_Records_2',
+                pane: 'pane_Torrey_Field_Records_3',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
@@ -214,30 +227,32 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Torrey_Field_Records_2');
-        map.getPane('pane_Torrey_Field_Records_2').style.zIndex = 402;
-        map.getPane('pane_Torrey_Field_Records_2').style['mix-blend-mode'] = 'normal';
-        var layer_Torrey_Field_Records_2 = new L.geoJson(json_Torrey_Field_Records_2, {
+        map.createPane('pane_Torrey_Field_Records_3');
+        map.getPane('pane_Torrey_Field_Records_3').style.zIndex = 403;
+        map.getPane('pane_Torrey_Field_Records_3').style['mix-blend-mode'] = 'normal';
+        var layer_Torrey_Field_Records_3 = new L.geoJson(json_Torrey_Field_Records_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Torrey_Field_Records_2',
-            layerName: 'layer_Torrey_Field_Records_2',
-            pane: 'pane_Torrey_Field_Records_2',
-            onEachFeature: pop_Torrey_Field_Records_2,
+            dataVar: 'json_Torrey_Field_Records_3',
+            layerName: 'layer_Torrey_Field_Records_3',
+            pane: 'pane_Torrey_Field_Records_3',
+            onEachFeature: pop_Torrey_Field_Records_3,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_Torrey_Field_Records_2_0(feature));
+                return L.marker(latlng, style_Torrey_Field_Records_3_0(feature));
             },
         });
-        var cluster_Torrey_Field_Records_2 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+        var cluster_Torrey_Field_Records_3 = new L.MarkerClusterGroup({showCoverageOnHover: false,
             spiderfyDistanceMultiplier: 2});
-        cluster_Torrey_Field_Records_2.addLayer(layer_Torrey_Field_Records_2);
+        cluster_Torrey_Field_Records_3.addLayer(layer_Torrey_Field_Records_3);
 
-        bounds_group.addLayer(layer_Torrey_Field_Records_2);
-        cluster_Torrey_Field_Records_2.addTo(map);
+        bounds_group.addLayer(layer_Torrey_Field_Records_3);
+        cluster_Torrey_Field_Records_3.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/Torrey_Field_Records_3.png" /> Torrey_Field_Records': cluster_Torrey_Field_Records_3,'<img src="legend/Torrey_Town_2.png" /> Torrey_Town': layer_Torrey_Town_2,"Google Satellite": layer_GoogleSatellite_1,"Google Maps": layer_GoogleMaps_0,},{collapsed:false}).addTo(map);
         setBounds();
         </script>
     </body>
