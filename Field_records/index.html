@@ -38,7 +38,7 @@
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:6
-        }).fitBounds([[38.218934035615284,-111.48111961584215],[38.32302978349703,-111.29137218183078]]);
+        }).fitBounds([[38.17920806586669,-111.53036560963623],[38.387364091889104,-111.15087074161718]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -50,7 +50,7 @@
         map.getPane('pane_GoogleMaps_0').style.zIndex = 400;
         var layer_GoogleMaps_0 = L.tileLayer('http://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
             pane: 'pane_GoogleMaps_0',
-            opacity: 1.0,
+            opacity: 0.8,
             attribution: '',
             minZoom: 6,
             maxZoom: 28,
@@ -58,12 +58,11 @@
             maxNativeZoom: 22
         });
         layer_GoogleMaps_0;
-        map.addLayer(layer_GoogleMaps_0);
         map.createPane('pane_GoogleSatellite_1');
         map.getPane('pane_GoogleSatellite_1').style.zIndex = 401;
         var layer_GoogleSatellite_1 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
             pane: 'pane_GoogleSatellite_1',
-            opacity: 0.66,
+            opacity: 0.8,
             attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
             minZoom: 6,
             maxZoom: 28,
